@@ -8,7 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head 
          content must come *after* these tags -->
-    <title>AI concepts made easy: About</title>
+    <title>
+             Gradient Descent-Ai made easy Tutorials for OpenCV, computer vision, deep learning, image processing, neural networks and artificial intelligence.
+    </title>
+    <meta name='title' content='Gradient Descent'>
+    <meta name="description" content="A quick explanation to Gradient Descent and its application." />
+      
 	<link rel="canonical" href="gradientdescent1.html" />
         <!-- Bootstrap -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -23,6 +28,8 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+  
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="200">
@@ -36,7 +43,7 @@
                     <span class="icon-bar"></span>
                 </button>
                       
-                      <a class="navbar-brand" href="#"> <img style="max-width:200px; margin-top: -90px;" src="images/logo.png"></a>
+                      <a class="navbar-brand" href="#"> <img style="max-width:200px; margin-top: -90px;" src="images/logo.png" ></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -80,33 +87,139 @@
 			</div>
 		</div>
 		<div class="row row-header col-xs-12 col-sm-12">
-		   <h3>Gradient descent - Single variable</h3>
-		   <p>Welcome to AI concepts made easy- A place to learn the basic concepts of AI/ML/CVIP/.. through easy to understand description and tutorials.
-		   I will try to explain the concepts in a way that is easy to digest and fulfils your apetite.
+		   <h2>Gradient descent - Single variable</h2>
+		   <br>
+		   <p style="font-size:26px;color:orange;"><u> Introduction</u> </p>
+			
+		   <p>Let's say someone asks you a simple question, "Tell me the value a>0 that results in the value of function, f(a)=2a, equal to 10. <br>
+		   Easy one right!!. Intutively,one would substitute different values of 'a' , i.e. a={1,2,3,4,5..} and at a=5 we get f(a)=10.<br>
+		   This is what gradient decent does. Well, not exactly, but the motive is same, and the question is little different.<br> <br>
+		   
+		   Again, if someone asks you a different question, "For what value of x and y, the function <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>f(x,y)= </mi><msup><mi>ax</mi><mn>2</mn></msup> <mo>+</mo> <msup><mi> by</mi><mn>2</mn></msup> <mo>+</mo> <mi> c</mi></math> 
+		is minimum? This is called minimizing a function and gradient descent is an expert in finding the minimum of a <a href="http://mathworld.wolfram.com/ConvexFunction.html" target="_blank">
+		convex function.</a> <br><br>
+		</p>
+		<p style="font-size:26px;color:orange;"><u> Description</u> </p>
+		<p >	
+		As the name suggests, <i>Gradient means "slope" & Descent means "to go down"</i>. Gradient Descent follows the slope of the curve and
+		descends("goes down") to those combination of parameters in the function which gives the minimum value. 
+		<br><br>
+		
+		Imagine the plot of our function E(w) is like this:<br><br>
+		<img src="../../images/ml/GradientDescentOfErrorFunction.jpg"><br>
+		<span style="font-size:10px">Source: http://home.agh.edu.pl/~horzyk/lectures/ai/ann.php</span><br><br>
+		
+		<i>Note: Ideally we want to reach at the Global Minimum (5), but Gradient descent doesnot guarantee that we will reach the global minimum</i>
+		</p>
+		<br><br>
+		<p style="font-size:26px;color:orange;"><u> Algorithm and Intuition</u> </p>
+		<p>
+		To find the value of w that results in minimum E, we first chose a starting point, i.e. initial value of w.<br>
+		Our initial value of w can be on either of two places:
+			<ul class="fa-ul";style="font-size:10px" >
+			  
+			  <li><i class="fa-li fa fa-spinner fa-spin"></i> <span style="font-size:18px"><b>Case 1: Initial value of w is on the falling edge, i.e point 1.</b></span></li>
+			   <p>In this case, Gradient descent will try to reach at 4,i.e. the local minimum. Ideally we want to reach at the global minimum,
+			   but since gradient decent always decends and never climbs, once at 4 it will never climb up to jump to 5.<br>
+			   At the falling edge 1 the slope of the function E(w), i.e. <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math> 
+			   is negative. Hence, to go down the slope, we have to increase the value of w, in small steps. The size of these steps is called <b>Learning rate</b>, commonly denoted as "&alpha; ". 
+			   </p>
+			  <li><i class="fa-li fa fa-spinner fa-spin"></i><span style="font-size:18px"><b>Case 2: Initial value of w is on the rising edge, i.e point 10</b></span></li>
+				<p>At the rising edge 10 the slope of the function E(w), i.e. <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math> 
+					is positive. Hence, to go down the slope, we have to decrease the value of w, in small steps.
+				</p>
+			</ul>
+			<br>
+			<p style="font-size:26px;color:orange;"><u> Forming equation</u> </p>
+			<p>
+			So far, so good. One thing is clear, wherever we encounter a positive slope, we have to decrease the value of  parameter w
+			by a small step &alpha; and wherever we encounter a negative slope, we have to increase the value of parameter w by &alpha;.
+			<br><br>
+			We just describe our understanding in form of an equation, which is also known as the <b>"update rule" .</b> <br><br>
+			<i>Repeat until convergence (until the slope reaches zero):</i>
+			&emsp;&emsp;&emsp; w:=w-&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
+			<br><br>
+			In this form : <br>
+			When the slope <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>
+			is positive, we end up subtracting &alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>) 
+			from w in this step, since ( -(positive value) = negative value) .
+			<br>When the slope <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>
+			is negative, we end up adding &alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>) 
+			to w in this step, since ( -(negative value) = positive value).
+			</p>
+			<p style="font-size:26px;color:orange;"><u> Some important points you should know : </u> </p>
+			
+			<ul class="fa-ul";style="font-size:10px" >
+		  
+			  <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>Gradient descent is sensitive to initial value of parameters. <br></b></span></li>
+			   <p> If we chose 1 as our starting point for w then we are more likely to end up at the local minimum 4. If we chose 10 as starting point for w then we
+			   are more lileky to end up at the local minimum 7.<br>
+			   Ideally, we should chose the starting value of w, some where near 5. Well, there is no way of knowing this and this stays a drawback of gradient
+			   descent.
+			   </p>
+			   <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>It is important to chose the appropriate value of learning rate (&alpha;). <br></b></span></li>
+			   <p> As we have seen, &alpha; decides how much we increase or decrease the value of parameters at each step.<br>
+			   <img src="../../images/ml/learningrate.jpg"><br>
+			   <i>If the value of &alpha; is too high </i>, we may end up bouncing between two points and may never reach minima.<br>
+			   <i>If the value of &alpha; is too low </i>, we will proceed towards minima very slowly and thus the algorithm may take very long time to converge<br>
+			   </p>
+			   
+			   <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>After every step,the change in parameters keeps decreasing and at minima, reaches zero. <br></b></span></li>
+			   <p>In the function w:=w-&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
+				, the slope (<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
+				keeps decreasing as we go down the curve and diminishes to zero on reaching minima. This is an important check to see if our implementation of
+				Gradient descent is correct.
+			   
+			   </p>
+			</ul>
+			<p style="font-size:26px;color:orange;"><u> Application: </u> </p>
+			<p>1) Gradient descent is generaly used to find the value of parameters which result in minimum error.<br>
+			<img src="../../images/ml/lrerror.png"><br>
+			<span style="font-size:10px">Source: http://wiki.fast.ai/index.php/Gradient_Descent</span><br><br>
+			
+			For example, if we want to find the line which best fits the data, we would form a cost function that measures the 
+			distance of point from the line as error. If the point lies on the line the error is zero, the more the distance of point 
+			from the line, the more is the error.<br>
+			For a given set of points, we form an error function, and implement a gradient descent to find such parameters of the line
+			which results in minumum overall error. I have discussed more on this in my tutorial on <a href="../../html/ml/linearregression.html">Linear regression.</a><br><br>
+			2)By the sign in our update rule to w:=w+&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
+			, gradient descent can be changed to gradient ascent to find the maxima of a function.
+			</p>
+			<p style="font-size:26px;color:orange;"><u> Summary: </u> </p>
+			<p> We saw the intuition behind gradient descent. We also understood the importance of &alpha; and initial value of w.
+			The same working of gradient descent can be expanded to functions with multiple variable.
+			</p>
+			
+		</p>
 		</div>
 		
-		
-		<div id="disqus_thread"></div>
-		<script>
+	
+	
+		<div class="row ">
+			<div  class="col-xs-12 col-sm-12">
+				<div id="disqus_thread"></div>
+					<script>
 
-			/**
-			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-			
-			var disqus_config = function () {
-			this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-			this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-			};
-			
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://aimadeeasy-ml.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();
-		</script>
-		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-									
+						/**
+						*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+						*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+						
+						var disqus_config = function () {
+						this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+						this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+						};
+						
+						(function() { // DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://aimadeeasy-ml.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</div>
+		</div>
+	</div>		
 	<!--
     <footer class="row-footer" id="contact">
         <div class="container">
@@ -148,6 +261,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- The below also contains javascript file for the tab panes-->
     <script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/mathml.js"></script>
 </body>
 
 </html>
