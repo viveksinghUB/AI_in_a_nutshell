@@ -44,6 +44,9 @@
     padding:50px 0px 0px 0px;
     z-index:0;
 }
+p{
+    font-size:20px;
+}
 
 .navbar-inverse {
     # background: #303F9F;
