@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head 
+         content must come *after* these tags -->
+    <title>
+             Linear Regression-Ai made easy Tutorials for OpenCV, computer vision, deep learning, image processing, neural networks and artificial intelligence.
+    </title>
+    <meta name='title' content='Linear Regression'>
+    <meta name="description" content="A quick introduction to Linear Regression and its application." />
+      
+	<link rel="canonical" href="../../html/ml/linearregression.html" />
+        <!-- Bootstrap -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap-social.css" rel="stylesheet">
+    <link href="../../css/mystyle.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="200">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                      
+                      <a class="navbar-brand" href="#"> <img style="max-width:200px; margin-top: -90px;" src="images/logo.png" ></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../index.html"><span class="glyphicon glyphicon-home"
+                         aria-hidden="true"></span> Home</a></li>
+                    <li  ><a href="../about.html"> <span class="glyphicon glyphicon-info-sign"
+                         aria-hidden="true"></span> About</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                         role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"
+                         aria-hidden="true"></span>
+                         Categories <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../index.html#ml">Machine Learning</a></li>
+                            <li><a href="#">Computer Vision</a></li>
+                            <li><a href="#">Data Science</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Others</li>
+                            <li><a href="#">Information Retrieval</a></li>
+                            <li><a href="#">Hacks</a></li>
+                        </ul>
+                     </li>
+					 
+					<li><a href="../../index.html#contact"> <span class="glyphicon glyphicon-phone"
+                         aria-hidden="true"></span> Contact</a></li>
+				</ul>
+            </div>
+        </div>
+    </nav>  
+	
+    
+
+    <div class="container">
+        <!-- adjust the content so that we create some space on the right side of the page to accommodate the nav component for the scrollspy behavior. To do this, we will nest the entire content of the web page into a row first, and move the existing content into a column with a column class of col-sm-10. The remaining two columns will be left for the nav-->
+       <div class="row ">
+		    <div  class="col-xs-12 col-sm-12">
+			   <ol class="breadcrumb">
+				   <li><a href="../../index.html">Home</a></li>
+				   <li  class="active">Linear Regression</li>
+			   </ol>
+			</div>
+		</div>
+		<div class="row row-header col-xs-12 col-sm-12">
+		   <h2>Simple Linear Regression</h2>
+		   <br>
+		   <p style="font-size:26px;color:orange;"><u> Introduction</u> </p>
+			
+	    <p> Linear Regression is made up of two words : <b>Linear, meaning "resembling a line" 
+		    and Regression, that is "a technique to determine the strength of the relationship between one dependent variable and a series of other changing variables (known as independent variables)" </b>.
+			<br>
+			In short, it is a technique that identifies a linear relation between two variables.The two variables that we are talking about are <b> independent and dependent variables. </b><br>
+			Dependent variable is a variable (often denoted by y ) whose value depends on that of another.It is called dependent because it "depends" on the independent variable.
+			<br>
+			<br> If the number of independent variable is more than one then the technique is called <b> Multivariate Linear Regression.</b>
+			<br> Nothing to fear by big names ;) Multivariate=> Multi meaning many & variate meaning variable, thus Many Variable Linear Regression.
+			<br>
+		</p>
+		<p style="font-size:26px;color:orange;"><u> Why Linear Regression</u> </p>
+		<p>	
+			Lets say you give an exam having 10 questions. The number of questions answered and total score you get is as below.
+			<br> <i>Note that the marks for each question are not equal</i>
+		</p>
+		<div class="row " >	
+			<div class="col-xs-12 col-sm-6">
+				<div class="table-responsive">	
+				  <table class="table table-striped table-condensed table-hover text-center">
+					<thead>
+					  <tr>
+						<th class="text-center">Total questions answered</th>
+						<th class="text-center">Total Marks obtained</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<td>1</td>
+						<td>10</td>
+					  </tr>
+					  <tr>
+						<td>2</td>
+						<td>12</td>
+					  </tr>
+					  <tr>
+						<td>5</td>
+						<td>27</td>
+					  </tr>
+					  <tr>
+						<td>9</td>
+						<td>38</td>
+					  </tr>
+					  <tr>
+						<td>10</td>
+						<td>50</td>
+					  </tr>
+					</tbody>
+				  </table>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<img class="img-responsive"  src="../../images/ml/Linearregression1.png" alt="Linear regression example" style="width:100%"><br>
+			</div>
+		</div>	
+		<p>
+		Now, if I give you this table and the plot and ask you,<b> What do you think I will get if I had answered 4 questions ?</b>
+		<br> Linear regression helps us answer this question. When the data points are placed in a way that a line/plane can pass through/near most of
+		the data points, linear regression is used. <br><br>
+		We will discuss the technique on how to find the best fit line to answer our question.
+		</p>
+		<br><br>
+		<p style="font-size:26px;color:orange;"><u> Algorithm</u> </p>
+		<p>
+		We need to find such a line, that passes through most of the data points and is close to other points as well, so that 
+		given a value of x (the independent variable) we can predict the value of y (the dependent variable) with minimum error.
+		<br><br>
+		Mathematically we form an error function (known as cost function)that depicts the error in predicted value and actual value.
+		Lets suppose, we chose the line " y=2x" as our best fit line for the above example.
+		</p>
+		<div class="row " >	
+			<div class="col-xs-12 col-sm-6">
+				<div class="table-responsive">	
+				  <table class="table table-striped table-condensed table-hover text-center">
+					<thead>
+					  <tr>
+						<th class="text-center">Total questions answered (x)</th>
+						<th class="text-center">Total Marks obtained (y)</th>
+						<th class="text-center">Total Marks predicted (y'=2x)</th>
+						<th class="text-center">Error(y'-y)</th>
+						<th class="text-center">Squared error</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<td>1</td>
+						<td>10</td>
+						<td>2</td>
+						<td>-8</td>
+						<td>64</td>
+					  </tr>
+					  <tr>
+						<td>2</td>
+						<td>12</td>
+						<td>4</td>
+						<td>-8</td>
+						<td>64</td>
+					  </tr>
+					  <tr>
+						<td>5</td>
+						<td>27</td>
+						<td>10</td>
+						<td>-17</td>
+						<td>289</td>
+					  </tr>
+					  <tr>
+						<td>9</td>
+						<td>38</td>
+						<td>18</td>
+						<td>-20</td>
+						<td>400</td>
+					  </tr>
+					  <tr>
+						<td>10</td>
+						<td>50</td>
+						<td>20</td>
+						<td>-30</td>
+						<td>900</td>
+					  </tr>
+					  <tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>Total: </td>
+						<td>1717</td>
+					  </tr>
+					</tbody>
+				  </table>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<img class="img-responsive"  src="../../images/ml/Mse.PNG" alt="Mean square error" style="width:100%"><br>
+			</div>
+		</div>
+		<p>
+		Now, we define our cost function as the Mean squared error , that is nothing but Total/(2*number of data points).
+		</p>
+			<iframe scrolling="no" title="Linear Regression, geogebra demonstration" src="https://www.geogebra.org/material/iframe/id/rYNBaX54/width/973/height/526/border/888888/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="973px" height="526px" style="border:0px;"> </iframe>		Imagine the plot of our function E(w) is like this:<br><br>
+		
+		<img src="../../images/ml/GradientDescentOfErrorFunction.jpg"><br>
+		<span style="font-size:10px">Source: http://home.agh.edu.pl/~horzyk/lectures/ai/ann.php</span><br><br>
+		
+		<i>Note: Ideally we want to reach at the Global Minimum (5), but Gradient descent doesnot guarantee that we will reach the global minimum</i>
+		</p>
+		<br><br>
+		<p style="font-size:26px;color:orange;"><u> Algorithm and Intuition</u> </p>
+		<p>
+		To find the value of w that results in minimum E, we first chose a starting point, i.e. initial value of w.<br>
+		Our initial value of w can be on either of two places:
+			<ul class="fa-ul";style="font-size:10px" >
+			  
+			  <li><i class="fa-li fa fa-spinner fa-spin"></i> <span style="font-size:18px"><b>Case 1: Initial value of w is on the falling edge, i.e point 1.</b></span></li>
+			   <p>In this case, Gradient descent will try to reach at 4,i.e. the local minimum. Ideally we want to reach at the global minimum,
+			   but since gradient decent always decends and never climbs, once at 4 it will never climb up to jump to 5.<br>
+			   At the falling edge 1 the slope of the function E(w), i.e. <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math> 
+			   is negative. Hence, to go down the slope, we have to increase the value of w, in small steps. The size of these steps is called <b>Learning rate</b>, commonly denoted as "&alpha; ". 
+			   </p>
+			  <li><i class="fa-li fa fa-spinner fa-spin"></i><span style="font-size:18px"><b>Case 2: Initial value of w is on the rising edge, i.e point 10</b></span></li>
+				<p>At the rising edge 10 the slope of the function E(w), i.e. <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math> 
+					is positive. Hence, to go down the slope, we have to decrease the value of w, in small steps.
+				</p>
+			</ul>
+			<br>
+			<p style="font-size:26px;color:orange;"><u> Forming equation</u> </p>
+			<p>
+			So far, so good. One thing is clear, wherever we encounter a positive slope, we have to decrease the value of  parameter w
+			by a small step &alpha; and wherever we encounter a negative slope, we have to increase the value of parameter w by &alpha;.
+			<br><br>
+			We just describe our understanding in form of an equation, which is also known as the <b>"update rule" .</b> <br><br>
+			<i>Repeat until convergence (until the slope reaches zero):</i>
+			&emsp;&emsp;&emsp; w:=w-&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
+			<br><br>
+			In this form : <br>
+			When the slope <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>
+			is positive, we end up subtracting &alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>) 
+			from w in this step, since ( -(positive value) = negative value) .
+			<br>When the slope <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>
+			is negative, we end up adding &alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>) 
+			to w in this step, since ( -(negative value) = positive value).
+			</p>
+			<p style="font-size:26px;color:orange;"><u> Some important points you should know : </u> </p>
+			
+			<ul class="fa-ul";style="font-size:10px" >
+		  
+			  <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>Gradient descent is sensitive to initial value of parameters. <br></b></span></li>
+			   <p> If we chose 1 as our starting point for w then we are more likely to end up at the local minimum 4. If we chose 10 as starting point for w then we
+			   are more lileky to end up at the local minimum 7.<br>
+			   Ideally, we should chose the starting value of w, some where near 5. Well, there is no way of knowing this and this stays a drawback of gradient
+			   descent.
+			   </p>
+			   <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>It is important to chose the appropriate value of learning rate (&alpha;). <br></b></span></li>
+			   <p> As we have seen, &alpha; decides how much we increase or decrease the value of parameters at each step.<br>
+			   <img src="../../images/ml/learningrate.jpg"><br>
+			   <i>If the value of &alpha; is too high </i>, we may end up bouncing between two points and may never reach minima.<br>
+			   <i>If the value of &alpha; is too low </i>, we will proceed towards minima very slowly and thus the algorithm may take very long time to converge<br>
+			   </p>
+			   
+			   <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>After every step,the change in parameters keeps decreasing and at minima, reaches zero. <br></b></span></li>
+			   <p>In the function w:=w-&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
+				, the slope (<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
+				keeps decreasing as we go down the curve and diminishes to zero on reaching minima. This is an important check to see if our implementation of
+				Gradient descent is correct.
+			   
+			   </p>
+			</ul>
+			<p style="font-size:26px;color:orange;"><u> Application: </u> </p>
+			<p>1) Gradient descent is generaly used to find the value of parameters which result in minimum error.<br>
+			<img src="../../images/ml/lrerror.png"><br>
+			<span style="font-size:10px">Source: http://wiki.fast.ai/index.php/Gradient_Descent</span><br><br>
+			
+			For example, if we want to find the line which best fits the data, we would form a cost function that measures the 
+			distance of point from the line as error. If the point lies on the line the error is zero, the more the distance of point 
+			from the line, the more is the error.<br>
+			For a given set of points, we form an error function, and implement a gradient descent to find such parameters of the line
+			which results in minumum overall error. I have discussed more on this in my tutorial on <a href="../../html/ml/linearregression.html">Linear regression.</a><br><br>
+			2)By the sign in our update rule to w:=w+&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
+			, gradient descent can be changed to gradient ascent to find the maxima of a function.
+			</p>
+			<p style="font-size:26px;color:orange;"><u> Summary: </u> </p>
+			<p> We saw the intuition behind gradient descent. We also understood the importance of &alpha; and initial value of w.
+			The same working of gradient descent can be expanded to functions with multiple variable.
+			</p>
+			
+		</p>
+		</div>
+		
+	
+	
+		<div class="row ">
+			<div  class="col-xs-12 col-sm-12">
+				<div id="disqus_thread"></div>
+					<script>
+
+						/**
+						*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+						*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+						
+						var disqus_config = function () {
+						this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+						this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+						};
+						
+						(function() { // DON'T EDIT BELOW THIS LINE
+						var d = document, s = d.createElement('script');
+						s.src = 'https://aimadeeasy-ml.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</div>
+		</div>
+	</div>		
+	<!--
+    <footer class="row-footer" id="contact">
+        <div class="container">
+            <div class="row">             
+                <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-sm-5">
+                    <h5>My Address</h5>
+                    <address>
+		              106 Englewood(lower)<br>
+		              Buffalo, Newyork<br>
+		              <i class="fa fa-phone"></i>: +1 716 9399162<br>
+		              <i class="fa fa-envelope"></i>: <a href="mailto:viveksin@buffalo.edu">viveksin@buffalo.edu</a>
+		           </address>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="nav navbar-nav" style="padding: 40px 10px;">
+                        <a class="btn btn-social-icon btn-google-plus" href="http://google.com/+"><i class="fa fa-google-plus"></i></a>
+                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook"></i></a>
+                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin"></i></a>
+                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
+                        <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
+                        <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+	-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- The below also contains javascript file for the tab panes-->
+    <script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/mathml.js"></script>
+</body>
+
+</html>
