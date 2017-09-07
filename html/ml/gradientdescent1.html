@@ -91,13 +91,15 @@
 		   <br>
 		   <p style="font-size:26px;color:orange;"><u> Introduction</u> </p>
 			
-		   <p>Let's say someone asks you a simple question, "Tell me the value a>0 that results in the value of function, f(a)=2a, equal to 10. <br>
+		   <p>Let's say someone asks you a simple question, "Tell me the value a>0 that results in the value of function, f(a)=2a, equals to 10. <br>
 		   Easy one right!!. Intutively,one would substitute different values of 'a' , i.e. a={1,2,3,4,5..} and at a=5 we get f(a)=10.<br>
 		   This is what gradient decent does. Well, not exactly, but the motive is same, and the question is little different.<br> <br>
 		   
-		   Again, if someone asks you a different question, "For what value of x and y, the function <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>f(x,y)= </mi><msup><mi>ax</mi><mn>2</mn></msup> <mo>+</mo> <msup><mi> by</mi><mn>2</mn></msup> <mo>+</mo> <mi> c</mi></math> 
+		   Again, if someone asks you a different question, "For what value of a,b & c, the function <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>f(x,y)= </mi><msup><mi>ax</mi><mn>2</mn></msup> <mo>+</mo> <msup><mi> by</mi><mn>2</mn></msup> <mo>+</mo> <mi> c</mi></math> 
 		is minimum? This is called minimizing a function and gradient descent is an expert in finding the minimum of a <a href="http://mathworld.wolfram.com/ConvexFunction.html" target="_blank">
-		convex function.</a> <br><br>
+		convex function.</a>
+			<hr/>
+			<br><br>
 		</p>
 		<p style="font-size:26px;color:orange;"><u> Description</u> </p>
 		<p >	
@@ -111,6 +113,7 @@
 		
 		<i>Note: Ideally we want to reach at the Global Minimum (5), but Gradient descent doesnot guarantee that we will reach the global minimum</i>
 		</p>
+		<hr/>
 		<br><br>
 		<p style="font-size:26px;color:orange;"><u> Algorithm and Intuition</u> </p>
 		<p>
@@ -128,6 +131,7 @@
 				<p>At the rising edge 10 the slope of the function E(w), i.e. <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math> 
 					is positive. Hence, to go down the slope, we have to decrease the value of w, in small steps.
 				</p>
+				<hr/>
 			</ul>
 			<br>
 			<p style="font-size:26px;color:orange;"><u> Forming equation</u> </p>
@@ -146,6 +150,7 @@
 			<br>When the slope <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>
 			is negative, we end up adding &alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>) 
 			to w in this step, since ( -(negative value) = positive value).
+			<hr/>
 			</p>
 			<p style="font-size:26px;color:orange;"><u> Some important points you should know : </u> </p>
 			
@@ -171,6 +176,7 @@
 				Gradient descent is correct.
 			   
 			   </p>
+			   <hr/>
 			</ul>
 			<p style="font-size:26px;color:orange;"><u> Application: </u> </p>
 			<p>1) Gradient descent is generaly used to find the value of parameters which result in minimum error.<br>
@@ -185,12 +191,14 @@
 			2)By the sign in our update rule to w:=w+&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
 			, gradient descent can be changed to gradient ascent to find the maxima of a function.
 			</p>
+			<hr/>
 			<p style="font-size:26px;color:orange;"><u> Summary: </u> </p>
 			<p> We saw the intuition behind gradient descent. We also understood the importance of &alpha; and initial value of w.
 			The same working of gradient descent can be expanded to functions with multiple variable.
 			</p>
 			
 		</p>
+		<hr/>
 		</div>
 		
 	

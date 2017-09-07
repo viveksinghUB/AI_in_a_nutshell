@@ -98,8 +98,9 @@
 			Dependent variable is a variable (often denoted by y ) whose value depends on that of another.It is called dependent because it "depends" on the independent variable.
 			<br>
 			<br> If the number of independent variable is more than one then the technique is called <b> Multivariate Linear Regression.</b>
-			<br> Nothing to fear by big names ;) Multivariate=> Multi meaning many & variate meaning variable, thus Many Variable Linear Regression.
+			<br> Nothing to fear from big names ;) Multivariate=> Multi meaning many & variate meaning variable, thus Many Variable Linear Regression.
 			<br>
+			<hr/>
 		</p>
 		<p style="font-size:26px;color:orange;"><u> Why Linear Regression</u> </p>
 		<p>	
@@ -146,10 +147,12 @@
 			</div>
 		</div>	
 		<p>
-		Now, if I give you this table and the plot and ask you,<b> What do you think I will get if I had answered 4 questions ?</b>
-		<br> Linear regression helps us answer this question. When the data points are placed in a way that a line/plane can pass through/near most of
+		Now, if I give you this table and the plot and ask you,<b> What do you think I will get if I had answered 4 questions ? Approximately 20, correct. </b> There you go, you just predicted
+		the value of dependent variable using Linear regression :)
+		<br>  When the data points are placed in a way that a line/plane can pass through/near most of
 		the data points, linear regression is used. <br><br>
 		We will discuss the technique on how to find the best fit line to answer our question.
+		<hr/>
 		</p>
 		<br><br>
 		<p style="font-size:26px;color:orange;"><u> Algorithm</u> </p>
@@ -158,11 +161,12 @@
 		given a value of x (the independent variable) we can predict the value of y (the dependent variable) with minimum error.
 		<br><br>
 		Mathematically we form an error function (known as cost function)that depicts the error in predicted value and actual value.
-		Lets suppose, we chose the line " y=2x" as our best fit line for the above example.
+		Lets suppose, we choose the line " y=2x" as our best fit line for the above example.
+		
 		</p>
 		<div class="row " >	
-		<div class="col-sm-3">
-		</div>
+			<div class="col-sm-3">
+			</div>
 			<div class="col-xs-12 col-sm-6">
 				<div class="table-responsive">	
 				  <table class="table table-striped table-condensed table-hover text-center">
@@ -224,86 +228,52 @@
 			</div>
 		</div>
 		
-		<div class="col-xs-12 col-sm-6">
-				<img class="img-responsive"  src="../../images/ml/Mse.PNG" alt="Mean square error" style="width:80%"><br>
-		</div>
-		<div class="col-xs-12 col-sm-6">
-				<img class="img-responsive"  src="../../images/ml/Lrerror.PNG" alt=" error" style="width:60%"><br>
+			<div class="col-xs-12 col-sm-6">
+					<img class="img-responsive"  src="../../images/ml/Mse.PNG" alt="Mean square error" style="width:80%"><br>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+					<img class="img-responsive"  src="../../images/ml/Lrerror.PNG" alt=" error" style="width:60%"><br>
+			</div>
 		</div>
 		
 			<p>
-			Now, we define our cost function as the Mean squared error , that is nothing but Total/(2*number of data points).
+			
+			We define our cost function as the Mean squared error , that is nothing but Total/(2*number of data points).<br>
+			We want to find out the equation of such a line that gives minimum mean squared error.<br>
+			Note that y' is the predicted value of y corresponding to an independent variable x. In short, y'=mx+c.<br>
+			<i>If number of independent variables are multdimension, then it becomes y'=EquationOfPlane(x1,x2,x3...).<br></i>
+			<br>
+			Thus, we need to find out such coefficients of independent variable (such as m and c in case of equation of a line, y=mx+c ), for which
+			the value of cost function is minimum. This is easily achievable by <a href="../../html/ml/gradientdescent1.html">Gradient Descent.</a>.
+			For now, think of it as a black box where we feed the cost function and the derivative of cost function, and it spits out the coefficients
+			of the function which gives the minimum error value for all data point.
+			<hr/>
 			</p>
+			<br><br>
+		<p style="font-size:26px;color:orange;"><u> Best Fit Line</u> </p>
+		<p>	
+		We saw that using gradient descent, we get the coefficients of equation that gives minimum mean squared error. The line represented by coefficients
+		is known as <b>Best Fit Line</b>. As in, the line that best fits the data.<br><br>
+		
+		In the interactive frame below,we have formed the best fit lines. Look, how the coefficients of the equation (y=mx+c) changes with the change in data points.
+		<hr/>
+		</p>
 		<div class="embed-responsive embed-responsive-16by9";style="position:center">
 			<iframe scrolling="no" title="Linear Regression, geogebra demonstration" src="https://www.geogebra.org/material/iframe/id/rYNBaX54/width/973/height/526/border/888888/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="973px" height="526px" style="border:0px;"> </iframe>		Imagine the plot of our function E(w) is like this:<br><br>
 		</div>
-		<img src="../../images/ml/GradientDescentOfErrorFunction.jpg"><br>
-		<span style="font-size:10px">Source: http://home.agh.edu.pl/~horzyk/lectures/ai/ann.php</span><br><br>
 		
-		<i>Note: Ideally we want to reach at the Global Minimum (5), but Gradient descent doesnot guarantee that we will reach the global minimum</i>
-		</p>
-		<br><br>
-		<p style="font-size:26px;color:orange;"><u> Algorithm and Intuition</u> </p>
+		<p style="font-size:26px;color:orange;"><u> How goood is the "Best Fit"</u> </p>
 		<p>
-		To find the value of w that results in minimum E, we first chose a starting point, i.e. initial value of w.<br>
-		Our initial value of w can be on either of two places:
-			<ul class="fa-ul";style="font-size:10px" >
-			  
-			  <li><i class="fa-li fa fa-spinner fa-spin"></i> <span style="font-size:18px"><b>Case 1: Initial value of w is on the falling edge, i.e point 1.</b></span></li>
-			   <p>In this case, Gradient descent will try to reach at 4,i.e. the local minimum. Ideally we want to reach at the global minimum,
-			   but since gradient decent always decends and never climbs, once at 4 it will never climb up to jump to 5.<br>
-			   At the falling edge 1 the slope of the function E(w), i.e. <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math> 
-			   is negative. Hence, to go down the slope, we have to increase the value of w, in small steps. The size of these steps is called <b>Learning rate</b>, commonly denoted as "&alpha; ". 
-			   </p>
-			  <li><i class="fa-li fa fa-spinner fa-spin"></i><span style="font-size:18px"><b>Case 2: Initial value of w is on the rising edge, i.e point 10</b></span></li>
-				<p>At the rising edge 10 the slope of the function E(w), i.e. <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math> 
-					is positive. Hence, to go down the slope, we have to decrease the value of w, in small steps.
-				</p>
-			</ul>
-			<br>
-			<p style="font-size:26px;color:orange;"><u> Forming equation</u> </p>
-			<p>
-			So far, so good. One thing is clear, wherever we encounter a positive slope, we have to decrease the value of  parameter w
-			by a small step &alpha; and wherever we encounter a negative slope, we have to increase the value of parameter w by &alpha;.
-			<br><br>
-			We just describe our understanding in form of an equation, which is also known as the <b>"update rule" .</b> <br><br>
-			<i>Repeat until convergence (until the slope reaches zero):</i>
-			&emsp;&emsp;&emsp; w:=w-&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
-			<br><br>
-			In this form : <br>
-			When the slope <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>
-			is positive, we end up subtracting &alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>) 
-			from w in this step, since ( -(positive value) = negative value) .
-			<br>When the slope <math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>
-			is negative, we end up adding &alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>) 
-			to w in this step, since ( -(negative value) = positive value).
-			</p>
-			<p style="font-size:26px;color:orange;"><u> Some important points you should know : </u> </p>
-			
-			<ul class="fa-ul";style="font-size:10px" >
-		  
-			  <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>Gradient descent is sensitive to initial value of parameters. <br></b></span></li>
-			   <p> If we chose 1 as our starting point for w then we are more likely to end up at the local minimum 4. If we chose 10 as starting point for w then we
-			   are more lileky to end up at the local minimum 7.<br>
-			   Ideally, we should chose the starting value of w, some where near 5. Well, there is no way of knowing this and this stays a drawback of gradient
-			   descent.
-			   </p>
-			   <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>It is important to chose the appropriate value of learning rate (&alpha;). <br></b></span></li>
-			   <p> As we have seen, &alpha; decides how much we increase or decrease the value of parameters at each step.<br>
-			   <img src="../../images/ml/learningrate.jpg"><br>
-			   <i>If the value of &alpha; is too high </i>, we may end up bouncing between two points and may never reach minima.<br>
-			   <i>If the value of &alpha; is too low </i>, we will proceed towards minima very slowly and thus the algorithm may take very long time to converge<br>
-			   </p>
-			   
-			   <li><i class="fa-li fa fa-check-square"></i> <span style="font-size:20px"><b>After every step,the change in parameters keeps decreasing and at minima, reaches zero. <br></b></span></li>
-			   <p>In the function w:=w-&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
-				, the slope (<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
-				keeps decreasing as we go down the curve and diminishes to zero on reaching minima. This is an important check to see if our implementation of
-				Gradient descent is correct.
-			   
-			   </p>
-			</ul>
-			<p style="font-size:26px;color:orange;"><u> Application: </u> </p>
+		Did you see the values of R & R2 in the frame above ? Did you notice how it changes when points go away or come near line? Well, it is known as 
+		the measure of how close the data are to the fitted regression line. <br>
+		It is also known as the coefficient of determination, or the coefficient of multiple determination for multiple regression.
+		These can be sometimes be a good factor to determine how well the line fits the data.Generally speaking, the closer to one the better.
+		<br>
+		I agree that this wont satisfy your apetite on R and R2, but I will try to cover in my future tutorials.
+		For now, you can have a look on an awesome <a href="http://blog.minitab.com/blog/adventures-in-statistics-2/regression-analysis-how-do-i-interpret-r-squared-and-assess-the-goodness-of-fit" target="_blank" 	>tutorial by Jim Frost</a>
+		<hr/>
+		</p>
+			<p style="font-size:26px;color:orange;"><u> Applications: </u> </p>
 			<p>1) Gradient descent is generaly used to find the value of parameters which result in minimum error.<br>
 			<img src="../../images/ml/lrerror.png"><br>
 			<span style="font-size:10px">Source: http://wiki.fast.ai/index.php/Gradient_Descent</span><br><br>
@@ -315,18 +285,23 @@
 			which results in minumum overall error. I have discussed more on this in my tutorial on <a href="../../html/ml/linearregression.html">Linear regression.</a><br><br>
 			2)By the sign in our update rule to w:=w+&alpha;(<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mi>dE</mi></mrow><mi>dw</mi></mfrac></math>)
 			, gradient descent can be changed to gradient ascent to find the maxima of a function.
+			<hr/>
 			</p>
+			
 			<p style="font-size:26px;color:orange;"><u> Summary: </u> </p>
 			<p> We saw the intuition behind gradient descent. We also understood the importance of &alpha; and initial value of w.
 			The same working of gradient descent can be expanded to functions with multiple variable.
+			<hr/>	
 			</p>
 			
-		</p>
-		</div>
+			
+			
+
+			
+	</div>
 		
-	
-	
-		<div class="row ">
+	<div class="container">
+			<div class="row ">
 			<div  class="col-xs-12 col-sm-12">
 				<div id="disqus_thread"></div>
 					<script>
@@ -350,7 +325,10 @@
 					<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 			</div>
 		</div>
-	</div>		
+	</div>
+	
+		
+	
 	<!--
     <footer class="row-footer" id="contact">
         <div class="container">
